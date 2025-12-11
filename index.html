@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En-Nesyri'yi Fırlat! - Fenerbahçe Mancınık Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>⚽ EN-NESYRİ'Yİ FIRLAT!</h1>
+            <p class="subtitle">Golcümüzü fırlat! Hedef: Arabistan 🎯</p>
+        </div>
+        
+        <div class="score-board">
+            <div class="score-item">
+                <span class="score-label">📏 Mesafe</span>
+                <span class="score-value" id="distanceValue">0 km</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">🏆 En İyi</span>
+                <span class="score-value" id="bestDistanceValue">0 km</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">✅ Başarı</span>
+                <span class="score-value" id="successCountValue">0</span>
+            </div>
+        </div>
+        
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas"></canvas>
+            <div class="hint" id="hint">
+                <span>⚽ En-Nesyri'yi fırlatmak için tıkla!</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="resetBtn">🔄 YENİDEN BAŞLA</button>
+        </div>
+        
+        <div class="instructions">
+            <div class="instruction-item">
+                <span class="step">1</span>
+                <span>Mancınığa tıkla ve basılı tut</span>
+            </div>
+            <div class="instruction-item">
+                <span class="step">2</span>
+                <span>Güç barı doldukça bekle
+            </div>
+            <div class="instruction-item">
+                <span class="step">3</span>
+                <span>Bırak ve uçuşu izle!</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
