@@ -6,33 +6,40 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #00205b 0%, #002d80 50%, #001a4d 100%);
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 15px;
-    overflow-x: hidden;
+    align-items: flex-start;
+    padding: 10px;
 }
 
 .game-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 25px;
+    padding: 20px;
     box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.5),
         inset 0 0 60px rgba(255, 255, 255, 0.05);
     max-width: 950px;
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -370,5 +377,98 @@ h1 {
         padding: 12px 30px;
         font-size: 0.9rem;
         border-radius: 12px;
+    }
+}
+
+/* Dikey mobil cihazlar için özel ayarlar */
+@media (max-width: 500px) and (orientation: portrait) {
+    body {
+        padding: 5px;
+        padding-top: 5px;
+    }
+    
+    .game-container {
+        padding: 10px;
+    }
+    
+    .header {
+        margin-bottom: 8px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        margin-bottom: 2px;
+    }
+    
+    .subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .score-board {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .score-item {
+        padding: 6px 10px;
+        min-width: 70px;
+        border-radius: 8px;
+    }
+    
+    .score-label {
+        font-size: 0.65rem;
+    }
+    
+    .score-value {
+        font-size: 0.9rem;
+    }
+    
+    .canvas-wrapper {
+        margin-bottom: 8px;
+    }
+    
+    .hint {
+        font-size: 0.65rem;
+        padding: 4px 10px;
+        bottom: 5px;
+    }
+    
+    /* Talimatları dikey modda gizle */
+    .instructions {
+        display: none;
+    }
+    
+    .controls {
+        margin-bottom: 8px;
+    }
+    
+    #resetBtn {
+        padding: 10px 25px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Çok küçük ekranlar için */
+@media (max-height: 600px) and (orientation: portrait) {
+    h1 {
+        font-size: 1.1rem;
+    }
+    
+    .subtitle {
+        display: none;
+    }
+    
+    .score-board {
+        margin-bottom: 5px;
+    }
+    
+    .score-item {
+        padding: 5px 8px;
+        min-width: 60px;
+    }
+    
+    .instructions {
+        display: none;
     }
 }

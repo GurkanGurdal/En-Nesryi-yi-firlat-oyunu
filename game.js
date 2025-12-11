@@ -9,21 +9,31 @@ let scale = 1;
 
 function resizeCanvas() {
     const container = canvas.parentElement;
-    const maxWidth = Math.min(container.clientWidth - 20, 900);
-    
-    // Mobil için daha küçük minimum
+    const containerWidth = container.clientWidth - 10;
+    const windowHeight = window.innerHeight;
     const isMobile = window.innerWidth <= 768;
+    const isPortrait = window.innerHeight > window.innerWidth;
     
-    if (isMobile) {
-        // Mobilde ekran genişliğine göre ayarla
-        scale = maxWidth / baseWidth;
-        canvas.style.width = maxWidth + 'px';
-        canvas.style.height = (baseHeight * scale) + 'px';
-    } else {
-        scale = Math.min(maxWidth / baseWidth, 1);
-        canvas.style.width = (baseWidth * scale) + 'px';
-        canvas.style.height = (baseHeight * scale) + 'px';
+    // Maksimum genişlik
+    let maxWidth = Math.min(containerWidth, 900);
+    
+    // Dikey mobilde ekran yüksekliğine göre de sınırla
+    if (isMobile && isPortrait) {
+        // Dikey modda canvas için kullanılabilir yükseklik
+        // (başlık, skor, butonlar için ~280px ayır)
+        const availableHeight = windowHeight - 300;
+        const aspectRatio = baseWidth / baseHeight;
+        
+        // Yüksekliğe göre genişlik hesapla
+        const widthFromHeight = availableHeight * aspectRatio;
+        
+        // En küçük olanı al
+        maxWidth = Math.min(maxWidth, widthFromHeight);
     }
+    
+    scale = maxWidth / baseWidth;
+    canvas.style.width = maxWidth + 'px';
+    canvas.style.height = (baseHeight * scale) + 'px';
     
     // Canvas iç boyutları sabit kalsın (kalite için)
     canvas.width = baseWidth;
@@ -37,6 +47,9 @@ window.addEventListener('resize', () => {
     if (gameState === GameState.READY || gameState === GameState.LANDED) {
         draw();
     }
+});
+window.addEventListener('orientationchange', () => {
+    setTimeout(resizeCanvas, 100);
 });
 
 // En-Nesyri resmi
