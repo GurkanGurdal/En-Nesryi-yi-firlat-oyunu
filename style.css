@@ -218,52 +218,157 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
     }
     
-    .subtitle {
-        font-size: 0.95rem;
-    }
-    
-    .score-board {
-        gap: 15px;
-    }
-    
-    .score-item {
-        padding: 12px 20px;
-        min-width: 100px;
-    }
-    
-    .score-value {
-        font-size: 1.2rem;
-    }
-    
-    .instructions {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    #reset-btn {
-        padding: 14px 40px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 500px) {
     .game-container {
         padding: 15px;
         border-radius: 16px;
     }
     
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
     }
     
     .score-board {
+        gap: 10px;
+    }
+    
+    .score-item {
+        padding: 10px 15px;
+        min-width: 90px;
+    }
+    
+    .score-label {
+        font-size: 0.75rem;
+    }
+    
+    .score-value {
+        font-size: 1.1rem;
+    }
+    
+    .canvas-wrapper {
+        margin-bottom: 15px;
+    }
+    
+    #gameCanvas {
+        border-radius: 12px;
+        border-width: 2px;
+        touch-action: none;
+    }
+    
+    .hint {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+        bottom: 10px;
+    }
+    
+    .instructions {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+    }
+    
+    .instruction-item {
+        font-size: 0.85rem;
+    }
+    
+    .step {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    #resetBtn {
+        padding: 14px 35px;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .controls {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 5px;
+        padding-top: 10px;
+    }
+    
+    .game-container {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .header {
+        margin-bottom: 12px;
+    }
+    
+    .score-board {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .score-item {
+        padding: 8px 12px;
+        min-width: 80px;
+        border-radius: 10px;
+    }
+    
+    .score-label {
+        font-size: 0.7rem;
+    }
+    
+    .score-value {
+        font-size: 1rem;
+    }
+    
+    .canvas-wrapper {
+        margin-bottom: 12px;
+    }
+    
+    .hint {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+    
+    .instructions {
+        gap: 8px;
+    }
+    
+    .instruction-item {
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+    
+    .step {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+    }
+    
+    #resetBtn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+        border-radius: 12px;
     }
 }

@@ -2,9 +2,42 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Canvas boyutları
-canvas.width = 900;
-canvas.height = 520;
+// Responsive canvas boyutları
+let baseWidth = 900;
+let baseHeight = 520;
+let scale = 1;
+
+function resizeCanvas() {
+    const container = canvas.parentElement;
+    const maxWidth = Math.min(container.clientWidth - 20, 900);
+    
+    // Mobil için daha küçük minimum
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Mobilde ekran genişliğine göre ayarla
+        scale = maxWidth / baseWidth;
+        canvas.style.width = maxWidth + 'px';
+        canvas.style.height = (baseHeight * scale) + 'px';
+    } else {
+        scale = Math.min(maxWidth / baseWidth, 1);
+        canvas.style.width = (baseWidth * scale) + 'px';
+        canvas.style.height = (baseHeight * scale) + 'px';
+    }
+    
+    // Canvas iç boyutları sabit kalsın (kalite için)
+    canvas.width = baseWidth;
+    canvas.height = baseHeight;
+}
+
+// Sayfa yüklenince ve pencere boyutu değişince
+resizeCanvas();
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    if (gameState === GameState.READY || gameState === GameState.LANDED) {
+        draw();
+    }
+});
 
 // En-Nesyri resmi
 const enNesyriImg = new Image();
@@ -1194,6 +1227,7 @@ function showVictoryMessage() {
         .victory-content {
             text-align: center;
             animation: bounceIn 0.6s ease;
+            padding: 20px;
         }
         .victory-emoji {
             font-size: 80px;
@@ -1220,6 +1254,41 @@ function showVictoryMessage() {
             font-size: 24px;
             color: #fff;
             opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            .victory-emoji {
+                font-size: 50px;
+                margin-bottom: 15px;
+            }
+            .victory-title {
+                font-size: 42px;
+                text-shadow: 2px 2px 0 #00205b, 4px 4px 0 rgba(0,0,0,0.3);
+                margin-bottom: 10px;
+            }
+            .victory-subtitle {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+            .victory-detail {
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 480px) {
+            .victory-emoji {
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+            .victory-title {
+                font-size: 32px;
+                text-shadow: 2px 2px 0 #00205b;
+                margin-bottom: 8px;
+            }
+            .victory-subtitle {
+                font-size: 22px;
+            }
+            .victory-detail {
+                font-size: 14px;
+            }
         }
     `;
     document.head.appendChild(style);
