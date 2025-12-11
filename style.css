@@ -6,40 +6,40 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: -webkit-fill-available;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #00205b 0%, #002d80 50%, #001a4d 100%);
-    min-height: 100vh;
+    min-height: 100%;
     min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 10px;
+    padding: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .game-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 15px;
     box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.5),
         inset 0 0 60px rgba(255, 255, 255, 0.05);
     max-width: 950px;
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 5px;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -381,57 +381,64 @@ h1 {
 }
 
 /* Dikey mobil cihazlar için özel ayarlar */
-@media (max-width: 500px) and (orientation: portrait) {
+@media (max-width: 768px) and (orientation: portrait) {
     body {
         padding: 5px;
-        padding-top: 5px;
     }
     
     .game-container {
-        padding: 10px;
+        padding: 8px;
+        border-radius: 12px;
     }
     
     .header {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
     
     h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         letter-spacing: 1px;
         margin-bottom: 2px;
     }
     
     .subtitle {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
     
     .score-board {
-        gap: 6px;
-        margin-bottom: 8px;
+        gap: 5px;
+        margin-bottom: 6px;
     }
     
     .score-item {
-        padding: 6px 10px;
-        min-width: 70px;
+        padding: 5px 8px;
+        min-width: 65px;
         border-radius: 8px;
     }
     
     .score-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
+        margin-bottom: 2px;
     }
     
     .score-value {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     .canvas-wrapper {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+    }
+    
+    #gameCanvas {
+        border-radius: 10px;
+        border-width: 2px;
     }
     
     .hint {
-        font-size: 0.65rem;
-        padding: 4px 10px;
+        font-size: 0.6rem;
+        padding: 3px 8px;
         bottom: 5px;
+        border-radius: 12px;
     }
     
     /* Talimatları dikey modda gizle */
@@ -440,19 +447,24 @@ h1 {
     }
     
     .controls {
-        margin-bottom: 8px;
+        margin-bottom: 5px;
     }
     
     #resetBtn {
-        padding: 10px 25px;
-        font-size: 0.85rem;
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        border-radius: 10px;
     }
 }
 
 /* Çok küçük ekranlar için */
 @media (max-height: 600px) and (orientation: portrait) {
+    .header {
+        margin-bottom: 4px;
+    }
+    
     h1 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .subtitle {
@@ -460,15 +472,66 @@ h1 {
     }
     
     .score-board {
-        margin-bottom: 5px;
+        margin-bottom: 4px;
+        gap: 4px;
     }
     
     .score-item {
-        padding: 5px 8px;
-        min-width: 60px;
+        padding: 4px 6px;
+        min-width: 55px;
     }
     
-    .instructions {
+    .score-label {
+        font-size: 0.55rem;
+    }
+    
+    .score-value {
+        font-size: 0.75rem;
+    }
+    
+    .canvas-wrapper {
+        margin-bottom: 4px;
+    }
+    
+    .hint {
         display: none;
+    }
+    
+    #resetBtn {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
+}
+
+/* iPhone SE ve benzeri küçük telefonlar */
+@media (max-height: 550px) and (orientation: portrait) {
+    .game-container {
+        padding: 5px;
+    }
+    
+    .header {
+        margin-bottom: 3px;
+    }
+    
+    h1 {
+        font-size: 0.9rem;
+    }
+    
+    .score-board {
+        margin-bottom: 3px;
+    }
+    
+    .score-item {
+        padding: 3px 5px;
+        min-width: 50px;
+    }
+    
+    .canvas-wrapper {
+        margin-bottom: 3px;
+    }
+    
+    #resetBtn {
+        padding: 5px 14px;
+        font-size: 0.7rem;
     }
 }

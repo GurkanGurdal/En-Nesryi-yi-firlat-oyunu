@@ -10,34 +10,41 @@ let scale = 1;
 function resizeCanvas() {
     const container = canvas.parentElement;
     const containerWidth = container.clientWidth - 10;
+    const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const isMobile = window.innerWidth <= 768;
-    const isPortrait = window.innerHeight > window.innerWidth;
+    const isPortrait = windowHeight > windowWidth;
     
-    // Maksimum genişlik
     let maxWidth = Math.min(containerWidth, 900);
+    let maxHeight = baseHeight;
     
-    // Dikey mobilde ekran yüksekliğine göre de sınırla
-    if (isMobile && isPortrait) {
-        // Dikey modda canvas için kullanılabilir yükseklik
-        // (başlık, skor, butonlar için ~280px ayır)
-        const availableHeight = windowHeight - 300;
-        const aspectRatio = baseWidth / baseHeight;
+    if (isPortrait && windowWidth <= 768) {
+        // Dikey mobilde: header ~120px, scores ~80px, button ~60px, padding ~40px = ~300px
+        // Canvas için kalan yükseklik
+        const reservedHeight = 260;
+        const availableHeight = windowHeight - reservedHeight;
         
-        // Yüksekliğe göre genişlik hesapla
+        // Yüksekliğe göre max genişlik hesapla (en-boy oranını koru)
+        const aspectRatio = baseWidth / baseHeight;
         const widthFromHeight = availableHeight * aspectRatio;
         
-        // En küçük olanı al
-        maxWidth = Math.min(maxWidth, widthFromHeight);
+        // En küçüğünü al
+        maxWidth = Math.min(maxWidth, widthFromHeight, windowWidth - 20);
+        
+        // Minimum genişlik
+        if (maxWidth < 280) maxWidth = 280;
     }
     
     scale = maxWidth / baseWidth;
+    const canvasHeight = baseHeight * scale;
+    
     canvas.style.width = maxWidth + 'px';
-    canvas.style.height = (baseHeight * scale) + 'px';
+    canvas.style.height = canvasHeight + 'px';
     
     // Canvas iç boyutları sabit kalsın (kalite için)
     canvas.width = baseWidth;
     canvas.height = baseHeight;
+    
+    console.log('Canvas size:', maxWidth, 'x', canvasHeight, 'Scale:', scale);
 }
 
 // Sayfa yüklenince ve pencere boyutu değişince
@@ -49,7 +56,7 @@ window.addEventListener('resize', () => {
     }
 });
 window.addEventListener('orientationchange', () => {
-    setTimeout(resizeCanvas, 100);
+    setTimeout(resizeCanvas, 150);
 });
 
 // En-Nesyri resmi
